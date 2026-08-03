@@ -20,7 +20,7 @@ public class HomingTntEntity extends ThrowableItemProjectile {
     private static final EntityDataAccessor<Integer> DATA_TARGET = SynchedEntityData.defineId(HomingTntEntity.class, EntityDataSerializers.INT);
     private static final String TAG_FUSE = "Fuse";
     private static final String TAG_TARGET = "Target";
-    public static final int DEFAULT_FUSE_TIME = 120;
+    public static final int DEFAULT_FUSE_TIME = 240;
     public static final double HOMING_SPEED = 1.6D;
     public static final double HIT_DISTANCE_SQR = 2.25D;
 

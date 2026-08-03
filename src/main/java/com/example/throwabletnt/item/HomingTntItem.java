@@ -13,15 +13,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
-
 public class HomingTntItem extends Item {
-    private static final double PICK_RANGE = 64.0D;
+    private static final double PICK_RANGE = 160.0D;
+    private static final double MAX_ANGLE_RAD = Math.toRadians(6.0D);
 
     public HomingTntItem(Item.Properties properties) {
         super(properties);
@@ -53,20 +51,28 @@ public class HomingTntItem extends Item {
     private static Entity pickTarget(Level level, Player player) {
         Vec3 from = player.getEyePosition(1.0F);
         Vec3 look = player.getLookAngle();
-        Vec3 to = from.add(look.scale(PICK_RANGE));
         HitResult hitResult = player.pick(PICK_RANGE, 1.0F, false);
         double maxDistSqr = hitResult.getType() == HitResult.Type.MISS ? PICK_RANGE * PICK_RANGE
                 : from.distanceToSqr(hitResult.getLocation());
         Entity result = null;
+        double bestAngle = MAX_ANGLE_RAD;
         for (Entity entity : level.getEntities(player, player.getBoundingBox().inflate(PICK_RANGE),
                 e -> e.isAlive() && e instanceof LivingEntity)) {
-            Optional<Vec3> hit = entity.getBoundingBox().clip(from, to);
-            if (hit.isPresent()) {
-                double distSqr = from.distanceToSqr(hit.get());
-                if (distSqr < maxDistSqr) {
-                    maxDistSqr = distSqr;
-                    result = entity;
-                }
+            Vec3 center = entity.getBoundingBox().getCenter();
+            Vec3 delta = center.subtract(from);
+            double distSqr = delta.lengthSqr();
+            if (distSqr > maxDistSqr) {
+                continue;
+            }
+            double along = delta.dot(look);
+            if (along <= 0.0D) {
+                continue;
+            }
+            Vec3 proj = from.add(look.scale(along));
+            double angle = Math.atan2(center.distanceTo(proj), along);
+            if (angle < bestAngle) {
+                bestAngle = angle;
+                result = entity;
             }
         }
         return result;
