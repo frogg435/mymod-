@@ -1,0 +1,29 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "throwabletnt"
+version = "1.1.0"
+displayName = "可投掷TNT"
+description = '''
+可投掷TNT模组 v1.1.0
+Throwable TNT — 投掷后会引信爆炸的TNT。
+追踪TNT — 投掷时锁定准心瞄准的生物，飞行时带有红石粒子拖尾。
+按 ESC 打开暂停菜单可调整爆炸参数（需要 OP 权限）。
+'''
+authors = "YourName"
+
+[[dependencies.throwabletnt]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.throwabletnt]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.22)"
+ordering = "NONE"
+side = "BOTH"

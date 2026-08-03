@@ -1,0 +1,13 @@
+{
+  "item.throwabletnt.throwable_tnt": "可投掷TNT",
+  "item.throwabletnt.homing_tnt": "追踪TNT",
+  "entity.throwabletnt.throwable_tnt": "可投掷TNT",
+  "entity.throwabletnt.homing_tnt": "追踪TNT",
+  "screen.throwabletnt.button": "可投掷TNT设置",
+  "screen.throwabletnt.title": "可投掷TNT 参数设置",
+  "screen.throwabletnt.power": "爆炸威力：%s",
+  "screen.throwabletnt.save": "保存",
+  "screen.throwabletnt.op_yes": "管理员权限：已授予",
+  "screen.throwabletnt.op_no": "需要 OP 权限（等级≥2）",
+  "message.throwabletnt.no_permission": "你没有权限修改可投掷TNT参数。"
+}

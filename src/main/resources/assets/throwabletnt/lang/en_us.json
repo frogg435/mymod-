@@ -1,0 +1,13 @@
+{
+  "item.throwabletnt.throwable_tnt": "Throwable TNT",
+  "item.throwabletnt.homing_tnt": "Homing TNT",
+  "entity.throwabletnt.throwable_tnt": "Throwable TNT",
+  "entity.throwabletnt.homing_tnt": "Homing TNT",
+  "screen.throwabletnt.button": "Throwable TNT Settings",
+  "screen.throwabletnt.title": "Throwable TNT Settings",
+  "screen.throwabletnt.power": "Explosion Power: %s",
+  "screen.throwabletnt.save": "Save",
+  "screen.throwabletnt.op_yes": "Operator permission: granted",
+  "screen.throwabletnt.op_no": "Requires OP permission (level 2+)",
+  "message.throwabletnt.no_permission": "You do not have permission to modify Throwable TNT settings."
+}
