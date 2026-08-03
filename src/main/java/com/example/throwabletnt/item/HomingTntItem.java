@@ -18,7 +18,6 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class HomingTntItem extends Item {
-    private static final double PICK_RANGE = 160.0D;
     private static final double MAX_ANGLE_RAD = Math.toRadians(6.0D);
 
     public HomingTntItem(Item.Properties properties) {
@@ -49,14 +48,15 @@ public class HomingTntItem extends Item {
 
     @Nullable
     private static Entity pickTarget(Level level, Player player) {
+        double range = HomingTntEntity.lockDistance;
         Vec3 from = player.getEyePosition(1.0F);
         Vec3 look = player.getLookAngle();
-        HitResult hitResult = player.pick(PICK_RANGE, 1.0F, false);
-        double maxDistSqr = hitResult.getType() == HitResult.Type.MISS ? PICK_RANGE * PICK_RANGE
+        HitResult hitResult = player.pick(range, 1.0F, false);
+        double maxDistSqr = hitResult.getType() == HitResult.Type.MISS ? range * range
                 : from.distanceToSqr(hitResult.getLocation());
         Entity result = null;
         double bestAngle = MAX_ANGLE_RAD;
-        for (Entity entity : level.getEntities(player, player.getBoundingBox().inflate(PICK_RANGE),
+        for (Entity entity : level.getEntities(player, player.getBoundingBox().inflate(range),
                 e -> e.isAlive() && e instanceof LivingEntity)) {
             Vec3 center = entity.getBoundingBox().getCenter();
             Vec3 delta = center.subtract(from);

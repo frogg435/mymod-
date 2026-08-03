@@ -4,13 +4,13 @@ license = "MIT"
 
 [[mods]]
 modId = "throwabletnt"
-version = "1.1.1"
+version = "1.2.0"
 displayName = "可投掷TNT"
 description = '''
-可投掷TNT模组 v1.1.1
+可投掷TNT模组 v1.2.0
 Throwable TNT — 投掷后会引信爆炸的TNT。
-追踪TNT — 投掷时锁定准心附近的目标（辅助锥形锁定，无需精确瞄准），飞行时带有红石粒子拖尾。
-按 ESC 打开暂停菜单可调整爆炸参数（需要 OP 权限）。
+追踪TNT — 投掷时锁定准心附近的目标（辅助锥形锁定），飞行时带有红石粒子拖尾。
+按 ESC 打开暂停菜单可调整：爆炸威力、是否破坏方块、锁定强度、锁定距离（需要 OP 权限）。
 '''
 authors = "YourName"
 

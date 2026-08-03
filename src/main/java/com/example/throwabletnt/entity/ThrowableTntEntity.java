@@ -17,6 +17,7 @@ public class ThrowableTntEntity extends ThrowableItemProjectile {
     private static final String TAG_FUSE = "Fuse";
     public static final int DEFAULT_FUSE_TIME = 100;
     public static volatile float power = 5.0F;
+    public static volatile boolean breakBlocks = true;
 
     public ThrowableTntEntity(EntityType<? extends ThrowableTntEntity> type, Level level) {
         super(type, level);
@@ -65,7 +66,8 @@ public class ThrowableTntEntity extends ThrowableItemProjectile {
     private void explode() {
         if (!this.level().isClientSide) {
             float radius = Math.max(0.0F, Math.min(100.0F, power));
-            this.level().explode(this, this.getX(), this.getY(), this.getZ(), radius, false, Level.ExplosionInteraction.TNT);
+            Level.ExplosionInteraction interaction = breakBlocks ? Level.ExplosionInteraction.TNT : Level.ExplosionInteraction.NONE;
+            this.level().explode(this, this.getX(), this.getY(), this.getZ(), radius, false, interaction);
         }
     }
 

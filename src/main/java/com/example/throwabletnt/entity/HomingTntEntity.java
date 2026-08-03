@@ -21,8 +21,9 @@ public class HomingTntEntity extends ThrowableItemProjectile {
     private static final String TAG_FUSE = "Fuse";
     private static final String TAG_TARGET = "Target";
     public static final int DEFAULT_FUSE_TIME = 240;
-    public static final double HOMING_SPEED = 1.6D;
     public static final double HIT_DISTANCE_SQR = 2.25D;
+    public static volatile float lockStrength = 1.6F;
+    public static volatile double lockDistance = 160.0D;
 
     public HomingTntEntity(EntityType<? extends HomingTntEntity> type, Level level) {
         super(type, level);
@@ -68,7 +69,7 @@ public class HomingTntEntity extends ThrowableItemProjectile {
                     this.explode();
                     return;
                 }
-                this.setDeltaMovement(to.normalize().scale(HOMING_SPEED));
+                this.setDeltaMovement(to.normalize().scale(lockStrength));
             }
             int fuse = this.getFuse() - 1;
             this.setFuse(fuse);
@@ -99,7 +100,8 @@ public class HomingTntEntity extends ThrowableItemProjectile {
     private void explode() {
         if (!this.level().isClientSide) {
             float radius = Math.max(0.0F, Math.min(100.0F, ThrowableTntEntity.power));
-            this.level().explode(this, this.getX(), this.getY(), this.getZ(), radius, false, Level.ExplosionInteraction.TNT);
+            Level.ExplosionInteraction interaction = ThrowableTntEntity.breakBlocks ? Level.ExplosionInteraction.TNT : Level.ExplosionInteraction.NONE;
+            this.level().explode(this, this.getX(), this.getY(), this.getZ(), radius, false, interaction);
         }
     }
 
