@@ -14,7 +14,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -55,9 +54,9 @@ public class HomingTntItem extends Item {
         Vec3 from = player.getEyePosition(1.0F);
         Vec3 look = player.getLookAngle();
         Vec3 to = from.add(look.scale(PICK_RANGE));
-        BlockHitResult blockHit = player.pick(PICK_RANGE, 1.0F, false);
-        double maxDistSqr = blockHit.getType() == HitResult.Type.MISS ? PICK_RANGE * PICK_RANGE
-                : from.distanceToSqr(blockHit.getLocation());
+        HitResult hitResult = player.pick(PICK_RANGE, 1.0F, false);
+        double maxDistSqr = hitResult.getType() == HitResult.Type.MISS ? PICK_RANGE * PICK_RANGE
+                : from.distanceToSqr(hitResult.getLocation());
         Entity result = null;
         for (Entity entity : level.getEntities(player, player.getBoundingBox().inflate(PICK_RANGE),
                 e -> e.isAlive() && e instanceof LivingEntity)) {

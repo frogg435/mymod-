@@ -1,7 +1,6 @@
 package com.example.throwabletnt.entity;
 
 import com.example.throwabletnt.ThrowableTnt;
-import com.mojang.math.Vector3f;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -14,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 public class HomingTntEntity extends ThrowableItemProjectile {
     private static final EntityDataAccessor<Integer> DATA_FUSE = SynchedEntityData.defineId(HomingTntEntity.class, EntityDataSerializers.INT);

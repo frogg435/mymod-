@@ -34,11 +34,11 @@ public class ThrowableTnt {
 
     public static final DeferredHolder<EntityType<?>, EntityType<ThrowableTntEntity>> THROWABLE_TNT_ENTITY =
             ENTITY_TYPES.register("throwable_tnt",
-                    () -> EntityType.Builder.of(ThrowableTntEntity::new, MobCategory.MISC)
+                    () -> EntityType.Builder.<ThrowableTntEntity>of((type, level) -> new ThrowableTntEntity(type, level), MobCategory.MISC)
                             .sized(0.6F, 0.6F).clientTrackingRange(8).updateInterval(2).build("throwable_tnt"));
     public static final DeferredHolder<EntityType<?>, EntityType<HomingTntEntity>> HOMING_TNT_ENTITY =
             ENTITY_TYPES.register("homing_tnt",
-                    () -> EntityType.Builder.of(HomingTntEntity::new, MobCategory.MISC)
+                    () -> EntityType.Builder.<HomingTntEntity>of((type, level) -> new HomingTntEntity(type, level), MobCategory.MISC)
                             .sized(0.6F, 0.6F).clientTrackingRange(8).updateInterval(2).build("homing_tnt"));
 
     public ThrowableTnt(IEventBus modEventBus) {
